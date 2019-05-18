@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasTypeCaster;
 use App\Models\Concerns\HasUniversalIdentifiers;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
 abstract class Model extends Eloquent
 {
-    use HasUniversalIdentifiers;
+    use HasUniversalIdentifiers, HasTypeCaster;
 
     /**
      * Indicates if the IDs are auto-incrementing.
