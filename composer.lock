@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ded905813f020dc1f381dbe1cecbcb1",
+    "content-hash": "39171cac84616c5e0f06befa4d96a76f",
     "packages": [
         {
             "name": "cakephp/chronos",
@@ -1803,6 +1803,69 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "spatie/nova-tail-tool",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/nova-tail-tool.git",
+                "reference": "75f8977c7aa7fc406360bc9c17b37078bf7aa82f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/nova-tail-tool/zipball/75f8977c7aa7fc406360bc9c17b37078bf7aa82f",
+                "reference": "75f8977c7aa7fc406360bc9c17b37078bf7aa82f",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^2.0",
+                "php": ">=7.2.0",
+                "symfony/process": "^4.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.8",
+                "phpunit/phpunit": "8.0",
+                "spatie/phpunit-snapshot-assertions": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\TailTool\\TailToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\TailTool\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastian@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel Nova tool to display the application log.",
+            "homepage": "https://github.com/spatie/nova-tail-tool",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-02-27T15:09:59+00:00"
         },
         {
             "name": "spatie/once",
