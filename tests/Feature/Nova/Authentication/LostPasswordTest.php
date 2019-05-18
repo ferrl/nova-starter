@@ -6,16 +6,16 @@ use App\Models\User;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
-use Tests\TestCase;
+use Tests\Feature\Nova\FeatureTestCase;
 
-class LostPasswordTest extends TestCase
+class LostPasswordTest extends FeatureTestCase
 {
     use RefreshDatabase;
 
     public function testReceiveEmailWhenEmailExists()
     {
         Notification::fake();
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->state('root')->create();
 
         $this->post('admin/password/email', [
             'email' => $user->email,

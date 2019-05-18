@@ -29,4 +29,15 @@ class Role extends Model
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * Is root role?
+     *
+     * @return bool
+     * @throws \Exception
+     */
+    public function isRootRole()
+    {
+        return Role::query()->orderBy('created_at')->first()->getKey() === $this->getKey();
+    }
 }

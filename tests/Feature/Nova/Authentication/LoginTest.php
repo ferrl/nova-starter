@@ -4,15 +4,15 @@ namespace Tests\Feature\Nova\Authentication;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+use Tests\Feature\Nova\FeatureTestCase;
 
-class LoginTest extends TestCase
+class LoginTest extends FeatureTestCase
 {
     use RefreshDatabase;
 
     public function testCanLoginWithValidUser()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->state('root')->create();
 
         $this->post('admin/login', [
             'email' => $user->email,
@@ -22,7 +22,7 @@ class LoginTest extends TestCase
 
     public function testReceiveErrorIfPasswordIsInvalid()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->state('root')->create();
 
         $this->post('admin/login', [
             'email' => $user->email,

@@ -2,6 +2,7 @@
 
 namespace App\Nova\Resources;
 
+use App\Domain\Support\PermissionList;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\BelongsToMany;
@@ -35,16 +36,15 @@ class Permission extends Resource
         return [
             ID::make()->onlyOnDetail(),
 
+            Text::make(__('nova-permission-tool::permissions.display_name'), function () {
+                return PermissionList::getDescription($this->resource->name);
+            }),
+
             Text::make(__('nova-permission-tool::permissions.name'), 'name')
+                ->sortable()
                 ->rules('required', 'string', 'max:255')
                 ->creationRules('unique:'.config('permission.table_names.permissions'))
                 ->updateRules('unique:'.config('permission.table_names.permissions').',name,{{resourceId}}'),
-
-            Text::make(__('nova-permission-tool::permissions.display_name'), function () {
-                return __('nova-permission-tool::permissions.display_names.'.$this->name);
-            })->canSee(function () {
-                return is_array(__('nova-permission-tool::permissions.display_names'));
-            }),
 
             Select::make(__('nova-permission-tool::permissions.guard_name'), 'guard_name')
                 ->options($guardOptions->toArray())
@@ -58,5 +58,16 @@ class Permission extends Resource
                 ->searchable()
                 ->singularLabel(Role::singularLabel()),
         ];
+    }
+
+    /**
+     * Get the actions available for the resource.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    public function actions(Request $request)
+    {
+        return [];
     }
 }

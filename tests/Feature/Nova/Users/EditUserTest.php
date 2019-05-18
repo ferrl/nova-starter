@@ -4,15 +4,15 @@ namespace Tests\Feature\Nova\Authentication;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+use Tests\Feature\Nova\FeatureTestCase;
 
-class EditUserTest extends TestCase
+class EditUserTest extends FeatureTestCase
 {
     use RefreshDatabase;
 
     public function testUpdatesUserWithValidAttributes()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->state('root')->create();
         $validParams = factory(User::class)->make();
 
         $previousPassword = $user->getAttribute('password');
@@ -31,7 +31,7 @@ class EditUserTest extends TestCase
 
     public function testEmailMustBeUnique()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->state('root')->create();
         $concurrentUser = factory(User::class)->create();
 
         $this->actingAs($user)

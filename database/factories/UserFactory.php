@@ -13,3 +13,7 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
+
+$factory->afterCreatingState(User::class, 'root', function (User $model) {
+    $model->givePermissionTo(\App\Models\Permission::where('guard_name', 'web')->pluck('name'));
+});
