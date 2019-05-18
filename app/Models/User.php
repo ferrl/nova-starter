@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Concerns\HasUniversalIdentifiers;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Model implements
     AuthenticatableContract,
@@ -20,7 +20,7 @@ class User extends Model implements
     use Authenticatable,
         Authorizable,
         CanResetPassword,
-        HasUniversalIdentifiers,
+        HasRoles,
         Notifiable,
         SoftDeletes;
 

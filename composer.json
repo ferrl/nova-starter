@@ -14,7 +14,9 @@
         "laravel/framework": "5.8.*",
         "laravel/nova": "~2.0",
         "laravel/tinker": "^1.0",
-        "spatie/nova-tail-tool": "^2.0"
+        "spatie/laravel-permission": "^2.37",
+        "spatie/nova-tail-tool": "^2.0",
+        "vyuldashev/nova-permission": "^1.7"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

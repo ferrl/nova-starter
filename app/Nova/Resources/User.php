@@ -4,10 +4,13 @@ namespace App\Nova\Resources;
 
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\PasswordConfirmation;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\Password;
+use Vyuldashev\NovaPermission\Permission;
+use Vyuldashev\NovaPermission\Role;
 
 class User extends Resource
 {
@@ -65,6 +68,10 @@ class User extends Resource
 
             PasswordConfirmation::make('Password Confirmation')
                 ->onlyOnForms(),
+
+            MorphToMany::make('Roles', 'roles', Role::class),
+
+            MorphToMany::make('Permissions', 'permissions', Permission::class),
         ];
     }
 }
