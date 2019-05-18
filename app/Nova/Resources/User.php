@@ -4,6 +4,7 @@ namespace App\Nova\Resources;
 
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\PasswordConfirmation;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\Password;
@@ -58,8 +59,12 @@ class User extends Resource
 
             Password::make('Password')
                 ->onlyOnForms()
-                ->creationRules('required', 'string', 'min:8')
-                ->updateRules('nullable', 'string', 'min:8'),
+                ->rules('confirmed', 'string', 'min:8')
+                ->creationRules('required')
+                ->updateRules('nullable'),
+
+            PasswordConfirmation::make('Password Confirmation')
+                ->onlyOnForms(),
         ];
     }
 }
