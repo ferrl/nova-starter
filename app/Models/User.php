@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\HasUniversalIdentifiers;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -20,7 +21,8 @@ class User extends Model implements
         Authorizable,
         CanResetPassword,
         HasUniversalIdentifiers,
-        Notifiable;
+        Notifiable,
+        SoftDeletes;
 
     /**
      * The attributes that should be hidden for arrays.
