@@ -2,6 +2,7 @@
 
 namespace App\Nova\Resources;
 
+use App\Nova\Actions\AttachMultiplePermissions;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\BelongsToMany;
@@ -9,6 +10,7 @@ use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Vyuldashev\NovaPermission\Role as Resource;
 
 class Role extends Resource
@@ -51,6 +53,25 @@ class Role extends Resource
             BelongsToMany::make(Permission::label(), 'permissions', Permission::class)
                 ->searchable()
                 ->singularLabel(Permission::singularLabel()),
+        ];
+    }
+
+    /**
+     * Get the actions available for the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function actions(Request $request)
+    {
+        return [
+            (new AttachMultiplePermissions)
+                ->canSee(function (NovaRequest $request) {
+                    return $request->user()->can('manage_roles');
+                })
+                ->canRun(function (NovaRequest $request, $model) {
+                    return $request->user()->can('manage_roles');
+                }),
         ];
     }
 }

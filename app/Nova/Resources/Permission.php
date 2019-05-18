@@ -2,7 +2,7 @@
 
 namespace App\Nova\Resources;
 
-use App\Domain\Support\PermissionList;
+use App\Domain\Support\ACL\PermissionList;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\BelongsToMany;
@@ -22,6 +22,20 @@ class Permission extends Resource
     public static $model = 'App\\Models\\Permission';
 
     /**
+     * Indicates if the resource should be displayed in the sidebar.
+     *
+     * @var bool
+     */
+    public static $displayInNavigation = false;
+
+    /**
+     * Indicates if the resource should be globally searchable.
+     *
+     * @var bool
+     */
+    public static $globallySearchable = false;
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param \Illuminate\Http\Request $request
@@ -37,7 +51,7 @@ class Permission extends Resource
             ID::make()->onlyOnDetail(),
 
             Text::make(__('nova-permission-tool::permissions.display_name'), function () {
-                return PermissionList::getDescription($this->resource->name);
+                return PermissionList::getDisplayName($this->resource->name);
             }),
 
             Text::make(__('nova-permission-tool::permissions.name'), 'name')

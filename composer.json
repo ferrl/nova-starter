@@ -11,6 +11,7 @@
         "php": "^7.2",
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
+        "fourstacks/nova-checkboxes": "^0.1.5",
         "laravel/framework": "5.8.*",
         "laravel/nova": "~2.0",
         "laravel/tinker": "^1.0",

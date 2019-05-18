@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Nova;
 
-use App\Domain\Support\PermissionList;
+use App\Domain\Support\ACL\PermissionList;
 use Tests\TestCase;
 
 abstract class FeatureTestCase extends TestCase

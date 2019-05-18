@@ -1,6 +1,6 @@
 <?php
 
-use App\Domain\Support\PermissionList;
+use App\Domain\Support\ACL\PermissionList;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
